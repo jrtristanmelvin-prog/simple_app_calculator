@@ -1,41 +1,43 @@
 class Calculator:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def __init__(self, first_number, second_number):
+        self.first_number = first_number
+        self.second_number = second_number
 
     def calculate(self):
         pass
 
-# Child classes
+
+# Child classes (Inheritance)
 class Addition(Calculator):
     def calculate(self):
-        return self.a + self.b
+        return self.first_number + self.second_number
 
 
 class Subtraction(Calculator):
     def calculate(self):
-        return self.a - self.b
+        return self.first_number - self.second_number
 
 
 class Multiplication(Calculator):
     def calculate(self):
-        return self.a * self.b
+        return self.first_number * self.second_number
 
 
 class Division(Calculator):
     def calculate(self):
-        if self.b == 0:
+        if self.second_number == 0:
             raise ZeroDivisionError("Cannot divide by zero.")
-        return self.a / self.b
-    
+        return self.first_number / self.second_number
+
+
 def get_numbers():
     try:
-        a = float(input("Enter first number: "))
-        b = float(input("Enter second number: "))
-        return a, b
+        first_number = float(input("Enter first number: "))
+        second_number = float(input("Enter second number: "))
+        return first_number, second_number
 
     except ValueError:
-        print("Invalid input. Numbers only.")
+        print("Invalid input. Please enter numbers only.")
         return get_numbers()
 
 
@@ -48,29 +50,39 @@ def choose_operation():
 
     return input("Enter choice (1-4): ")
 
+
 def main():
     while True:
         choice = choose_operation()
 
-        a, b = get_numbers()
-
-        if choice == '1':
-            calc = Addition(a, b)
-        elif choice == '2':
-            calc = Subtraction(a, b)
-        elif choice == '3':
-            calc = Multiplication(a, b)
-        elif choice == '4':
-            calc = Division(a, b)
-        else:
-            print("Invalid choice.")
+        if choice not in ['1', '2', '3', '4']:
+            print("Invalid choice. Try again.")
             continue
 
-        print("Result:", calc.calculate())
+        first_number, second_number = get_numbers()
 
-        again = input("Try again? (y/n): ").lower()
+        try:
+            if choice == '1':
+                calculator = Addition(first_number, second_number)
 
-        if again != 'y':
+            elif choice == '2':
+                calculator = Subtraction(first_number, second_number)
+
+            elif choice == '3':
+                calculator = Multiplication(first_number, second_number)
+
+            elif choice == '4':
+                calculator = Division(first_number, second_number)
+
+            result = calculator.calculate()
+            print("Result:", result)
+
+        except Exception as error:
+            print("Error:", error)
+
+        try_again = input("\nTry again? (y/n): ").lower()
+
+        if try_again != 'y':
             print("Thank you!")
             break
 
