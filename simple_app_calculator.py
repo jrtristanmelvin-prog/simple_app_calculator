@@ -5,3 +5,24 @@ class Calculator:
 
     def calculate(self):
         pass
+
+# Child classes
+class Addition(Calculator):
+    def calculate(self):
+        return self.a + self.b
+
+
+class Subtraction(Calculator):
+    def calculate(self):
+        return self.a - self.b
+
+
+class Multiplication(Calculator):
+    def calculate(self):
+        return self.a * self.b
+
+
+class Division(Calculator):
+    def calculate(self):
+        return self.a / self.b
+    
