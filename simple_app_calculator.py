@@ -24,6 +24,8 @@ class Multiplication(Calculator):
 
 class Division(Calculator):
     def calculate(self):
+        if self.b == 0:
+            raise ZeroDivisionError("Cannot divide by zero.")
         return self.a / self.b
     
 def get_numbers():
