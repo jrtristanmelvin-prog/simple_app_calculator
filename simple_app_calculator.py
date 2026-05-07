@@ -40,3 +40,33 @@ def choose_operation():
     print("4. Division")
 
     return input("Enter choice (1-4): ")
+
+def main():
+    while True:
+        choice = choose_operation()
+
+        a, b = get_numbers()
+
+        if choice == '1':
+            calc = Addition(a, b)
+        elif choice == '2':
+            calc = Subtraction(a, b)
+        elif choice == '3':
+            calc = Multiplication(a, b)
+        elif choice == '4':
+            calc = Division(a, b)
+        else:
+            print("Invalid choice.")
+            continue
+
+        print("Result:", calc.calculate())
+
+        again = input("Try again? (y/n): ").lower()
+
+        if again != 'y':
+            print("Thank you!")
+            break
+
+
+if __name__ == "__main__":
+    main()
