@@ -29,9 +29,14 @@ class Division(Calculator):
         return self.a / self.b
     
 def get_numbers():
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    return a, b
+    try:
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+        return a, b
+
+    except ValueError:
+        print("Invalid input. Numbers only.")
+        return get_numbers()
 
 
 def choose_operation():
